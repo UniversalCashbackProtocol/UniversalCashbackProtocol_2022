@@ -9,10 +9,10 @@ const OrderItem = ({ product }) => {
 	return (
 		<div className="OrderItem">
 			<figure>
-				<img src={product.images[0]} alt={product.title} />
+				<img src={product.images} alt={product.title} />
 			</figure>
 			<p>{product.title}</p>
-			<p>${product.price}</p>
+			<p>${product.price *10} UCP</p>
 			<img
 				src={close}
 				alt="close"
