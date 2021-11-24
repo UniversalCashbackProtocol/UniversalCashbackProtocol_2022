@@ -1,56 +1,44 @@
 import React, { useContext, useState } from 'react';
-import '../styles/ProductItem.scss';
 import AppContext from '../context/AppContext';
-import ProductDetail from '../containers/ProductDetail';
+import OrderItem from '../components/OrderItem';
+import '../styles/MyOrder.scss';
+import Checkout from '../pages/Checkout';
 
-import addToCartImage from '@icons/bt_add_to_cart.svg';
-import addedToCartImage from '@icons/bt_added_to_cart.svg'
+import arrow from '@icons/flechita.svg';
 
-const ProductItem = ({ product }) => {
-	const [ toggleProduct, setToggleProduct ] = useState(false);
-	const { state, addToCart } = useContext(AppContext);
-
-	const handleClick = (item) => {
-		if(state.cart.includes(item)) {
-			return;
-		} else {
-			addToCart(item);
-		}
-	}
-
-	const verifyAdded = (item) => {
-		if(state.cart.includes(item)) {
-			return addedToCartImage;
-		} else {
-			return addToCartImage;
-		}
-	}
+const MyOrder = ({ toggleOrders, setToggleOrders }) => {
+	const [ toggle, setToggle ] = useState(false);
+	const { state } = useContext(AppContext);
 
 	return (
-		<div className="ProductItem">
-			<img
-				src={product.images[0]}
-				loading="lazy" alt={product.title} className="productImage"
-				onClick={() => setToggleProduct(!toggleProduct)}
-			/>
-			<div className="product-info">
-				<div>
-					<p>{product.price * 10} UCP</p>
-					<p>{product.title}</p>
-				</div>
-				<figure
-					onClick={() => handleClick(product)}
-				>
-					<img src={verifyAdded(product)}/>
-				</figure>
+		<aside className="MyOrder">
+			<div
+				className="title-container"
+				onClick={() => setToggleOrders(!toggleOrders)}
+			>
+				<img src={arrow} alt="arrow" />
+				<p className="title">My order</p>
 			</div>
-			{toggleProduct && <ProductDetail
-				product={product}
-				setToggleProduct={setToggleProduct}
-				handleClick={handleClick}
-			/>}
-		</div>
+			<div className="my-order-content">
+				{state.cart.map((product) => (
+					<OrderItem
+						product={product}
+						key={`orderItem-${product.id}`}
+					/>
+				))}
+				<div className="order">
+					<p>
+						<span>Total</span>
+					</p>
+					<p>{state.total * 10} UCP</p>
+				</div>
+				<button className="primary-button" onClick={() => setToggle(true)}>
+					Checkout
+				</button>
+			</div>
+			{toggle && <Checkout setToggle={setToggle}/>}
+		</aside>
 	);
 }
 
-export default ProductItem;
+export default MyOrder;
