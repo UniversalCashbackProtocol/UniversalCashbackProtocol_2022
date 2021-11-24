@@ -1,12 +1,19 @@
 {
   "name": "interface_webapp_ucp",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Interface Universal Cashback Protocol",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack serve --mode development --open",
+		"build": "webpack --mode production"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "cashback",
+    "chainlink",
+    "hackaton"
+  ],
   "author": "Leandro Diaz <juanca930.jcdz@gmail.com>",
   "license": "MIT",
   "devDependencies": {
