@@ -26,7 +26,7 @@ const Orders = ({ setToggle }) => {
 					<p>
 						<span>Total</span>
 					</p>
-					<p>${state.total}</p>
+					<p>{state.total}</p>
 				</div>
 				<a href="/checkout"><button className="primary-button">
 					Checkout

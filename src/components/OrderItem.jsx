@@ -12,7 +12,7 @@ const OrderItem = ({ product }) => {
 				<img src={product.images} alt={product.title} />
 			</figure>
 			<p>{product.title}</p>
-			<p>${product.price *10} UCP</p>
+			<p>{product.price *10} UCP</p>
 			<img
 				src={close}
 				alt="close"
